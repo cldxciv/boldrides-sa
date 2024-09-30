@@ -18,6 +18,9 @@ import { generateToken, messaging } from "../firebase";
 import { onMessage } from "firebase/messaging";
 import toast, { Toaster } from "react-hot-toast";
 import Organisations from "../components/dashboard/Organisations";
+import Organisationinfo from "../components/dashboard/Organisationinfo";
+import IntercityModal from "../components/dashboard/Rideintercitymodal";
+import Neworganisationinfo from "../components/dashboard/Neworganisationinfo";
 
 const Home = () => {
   const [activeComponent, setActiveComponent] = useState("Dashboard");
@@ -40,7 +43,15 @@ const Home = () => {
       case "Fleets":
         return <Fleets />;
       case "Organisations":
-        return <Organisations/>;
+        return <Organisations   onMenuItemClick={handleMenuItemClick}
+        />;
+      case "Organisationinfo":
+        return <Organisationinfo  onMenuItemClick={handleMenuItemClick}
+        />;
+        case "Neworganisationinfo":
+          return <Neworganisationinfo onMenuItemClick={handleMenuItemClick}/>
+        case "Intercityinfo":
+        return <IntercityModal onMenuItemClick={handleMenuItemClick}/>
       case "Vehicles":
         return <Vehicles />;
       case "Drivers":
@@ -52,7 +63,8 @@ const Home = () => {
       case "Zones":
         return <Zones />;
       case "Intercity":
-        return <Intercity />;
+        return <Intercity onMenuItemClick={handleMenuItemClick}/>;
+
       case "Reports":
         return <Reports />;
       case "Documents":

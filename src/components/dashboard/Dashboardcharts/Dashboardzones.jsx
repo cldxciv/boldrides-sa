@@ -4,9 +4,6 @@ import radioButtonChecked from "../../../assets/radioButtonChecked.svg";
 import radioButtonUnChecked from "../../../assets/radioButtonUnChecked.svg";
 import {
     GoogleMap,
-    Polygon,
-    DrawingManager,
-    Autocomplete,
   } from "@react-google-maps/api";
   import {
     styled,

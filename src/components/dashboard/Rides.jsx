@@ -22,43 +22,13 @@ import twoLeft from "../../assets/twoLeft.svg";
 import oneLeft from "../../assets/oneLeft.svg";
 import twoRight from "../../assets/twoRight.svg";
 import CustomSelectDropdown from "../common/CustomSelectDropdown";
-// import RideModal from "./RideModal";
+import Ridemodal from "./Rideintercitymodal";
 import LoadingAnimation from "../common/LoadingAnimation";
-import addorganisationbtn from "../../assets/superadminwhiteorganisation.svg"
 
 const Rides = () => {
-  const [showAddFleetModal, setShowAddFleetModal] = useState(false);
+  const [showRidesModal, setShowRidesModal] = useState(false);
   const [allRides, setAllRides] = useState([]);
-  const [filteredRides, setFilteredRides] = useState([
-    {
-      name: "Fleet 1",
-      totalVehicles: 100,
-      totalDrivers: 80,
-      DOR: "01/01/2024", // Assuming it's a date of registration
-      verificationStatus: { errors: 1, warnings: 4 }
-    },
-    {
-      name: "Fleet 2",
-      totalVehicles: 150,
-      totalDrivers: 120,
-      DOR: "15/03/2024",
-      verificationStatus: { errors: 0, warnings: 0 }
-    },
-    {
-      name: "Fleet 3",
-      totalVehicles: 200,
-      totalDrivers: 180,
-      DOR: "20/05/2024",
-      verificationStatus: { errors: 0, warnings: 0 }
-    },
-    {
-      name: "Fleet 4",
-      totalVehicles: 50,
-      totalDrivers: 45,
-      DOR: "10/07/2024",
-      verificationStatus: { errors: 1, warnings: 4 }
-    }
-  ]);
+  const [filteredRides, setFilteredRides] = useState([]);
   const [showAll, setShowAll] = useState(true);
   const [state, setState] = useState("");
   const [current, setCurrent] = useState("");
@@ -200,6 +170,7 @@ const Rides = () => {
   };
 
   const handleRideClick = (rideId) => {
+    setShowRidesModal(true);
     setSelectedRideId(rideId);
     setfromandtoloaction({
       fromlocation: addresses[rideId]?.pickup,
@@ -230,6 +201,7 @@ const Rides = () => {
     }
   };
 
+  const handleClose = () => setShowRidesModal(false);
 
   const truncateAddress = (address, wordLimit = 7) => {
     const words = address.split(" ");
@@ -251,29 +223,7 @@ const Rides = () => {
 
   return (
     <div className="flex flex-col gap-8 p-4">
-      <div className="flex justify-between items-center">
-      <h1 className="text-2xl font-bold">Organization</h1>
-      <Button
-          variant="contained"
-          startIcon={<img src={addorganisationbtn} className="text-white" alt="Add vehicle" />}
-          sx={{
-            backgroundColor: showAddFleetModal ? "#BBBBBB" : "black",
-            color: "white",
-            textTransform: "none",
-            padding: "12px 24px",
-            borderRadius: "8px",
-            "&:hover": {
-              backgroundColor: showAddFleetModal ? "#BBBBBB" : "black",
-            },
-          }}
-          // onClick={() => {
-          //   setAddError(false);
-          //   setShowAddFleetModal((prevValue) => !prevValue);
-          // }}
-        >
-          Add organisation
-        </Button>
-        </div>
+      <h1 className="text-2xl font-bold">Rides</h1>
       <div className="flex justify-between">
         <div className="flex space-x-4 h-10">
           <Button
@@ -308,17 +258,17 @@ const Rides = () => {
               "Requesting",
             ]}
           />
-          {/* <CustomSelectDropdown
+          <CustomSelectDropdown
             value={current}
             onChange={handleCurrentChange}
             name="Current"
             options={["Assigned", "Not assigned"]}
-          /> */}
+          />
         </div>
-        <div className="flex space-x-4 ">
+        <div className="flex space-x-4 h-10">
           <TextField
             variant="outlined"
-            placeholder="Search for organisations"
+            placeholder="Search for Rides"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             InputProps={{
@@ -335,7 +285,7 @@ const Rides = () => {
             sx={{
               width: "150%",
               ".MuiOutlinedInput-input": {
-                padding: "10px 16px 10px 0px",
+                padding: "10px 4px",
               },
             }}
           />
@@ -360,7 +310,7 @@ const Rides = () => {
                   fontWeight: "700",
                 }}
               >
-                Name
+                Ride ID
               </TableCell>
               <TableCell
                 sx={{
@@ -368,7 +318,7 @@ const Rides = () => {
                   fontWeight: "700",
                 }}
               >
-                Total Vehicles
+                Status
               </TableCell>
               <TableCell
                 sx={{
@@ -376,7 +326,7 @@ const Rides = () => {
                   fontWeight: "700",
                 }}
               >
-                Total Drivers
+                Vehicle No.
               </TableCell>
               <TableCell
                 sx={{
@@ -384,7 +334,7 @@ const Rides = () => {
                   fontWeight: "700",
                 }}
               >
-                DOR
+                Driver Name
               </TableCell>
               <TableCell
                 sx={{
@@ -392,7 +342,32 @@ const Rides = () => {
                   fontWeight: "700",
                 }}
               >
-                Verification status
+                From
+              </TableCell>
+              <TableCell
+                sx={{
+                  fontSize: "16px",
+                  fontWeight: "700",
+                }}
+              >
+                To location
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{
+                  fontSize: "16px",
+                  fontWeight: "700",
+                }}
+              >
+                Stop
+              </TableCell>
+              <TableCell
+                sx={{
+                  fontSize: "16px",
+                  fontWeight: "700",
+                }}
+              >
+                Distance/Time
               </TableCell>
               <TableCell align="right">
                 <img src={settingsIcon} alt="settingsIcon" />
@@ -402,7 +377,7 @@ const Rides = () => {
           <TableBody>
             {filteredRides.map((ride, index) => (
               <TableRow
-                // onClick={(e) => handleRideClick(ride?._id)}
+                onClick={(e) => handleRideClick(ride?._id)}
                 key={index}
                 sx={{ cursor: "pointer" }}
               >
@@ -443,7 +418,7 @@ const Rides = () => {
                   </div>
                 </TableCell>
                 <TableCell align="center">
-                  <p className="font-normal text-base">{ride?.stops?.length}</p>
+                  <p className="font-normal text-base">{ride?.stops.length}</p>
                 </TableCell>
                 <TableCell>
                   <p className="font-normal text-base">
@@ -542,14 +517,14 @@ const Rides = () => {
           </Button>
         </div>
       </div>
-      {/* {selectedRideId && (
+      {selectedRideId && (
         <RideModal
-          selectedRideId={selectedRideId}
+          // selectedRideId={selectedRideId}
           open={showRidesModal}
           handleClose={handleClose}
-          fromandtolocation={fromandtolocation}
+          // fromandtolocation={fromandtolocation}
         />
-      )} */}
+      )}
     </div>
   );
 };

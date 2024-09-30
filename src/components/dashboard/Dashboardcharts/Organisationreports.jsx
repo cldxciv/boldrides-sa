@@ -32,12 +32,12 @@ const Organisationreports = () => {
         categoryPercentage: 0.5,
         borderSkipped: "middle",
         borderRadius: "20px",
-        borderRadius: {
-            topLeft: 10,
-            bottomLeft: 10,
-            topRight: 10,
-            bottomRight: 10,
-          },
+        // borderRadius: {
+        //     topLeft: 10,
+        //     bottomLeft: 10,
+        //     topRight: 10,
+        //     bottomRight: 10,
+        //   },
       },
       {
         label: 'Pending',
