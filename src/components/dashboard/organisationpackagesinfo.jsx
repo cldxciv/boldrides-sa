@@ -29,8 +29,9 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import travelicon from "../../assets/travelling.svg";
+import packageicon from "../../assets/packageimg.png"
 
-const IntercityModal = ({ onMenuItemClick}) => {
+const Organisationpackagesinfo = ({ onMenuItemClick}) => {
   const [showAddVehicleModal, setShowAddVehicleModal] = useState(false);
   const { isLoaded, loadError } = useGoogleMapsLoader();
   const incidentData = [
@@ -85,35 +86,15 @@ const IntercityModal = ({ onMenuItemClick}) => {
     <div className="flex justify-between items-center ">
     <div className="flex items-center gap-4">
       <ArrowBackIcon onClick={() => {
-            onMenuItemClick("Intercity")
+            onMenuItemClick("Organisationpackages")
           }}/>
-        <h1 className="text-2xl font-bold">Intercity rides</h1>
+        <h1 className="text-2xl font-bold">Package ride #148</h1>
         </div>
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: showAddVehicleModal ? "#BBBBBB" : "black",
-            color: "white",
-            textTransform: "none",
-            padding: "12px 24px",
-            borderRadius: "8px",
-            "&:hover": {
-              backgroundColor: showAddVehicleModal ? "#BBBBBB" : "black",
-            },
-          }}
-          onClick={Handleclose}
-        >
-          Create new intercity ride
-        </Button>
       </div>
 
       {/* lowerdistance */}
 
-      <div className="flex gap-4 pt-2">
-        <p className="text-base font-bold font-redhat">Porto</p>
-        <img src={travelicon} alt="travel" />
-        <p className="text-base font-bold font-redhat">Lisbon</p>
-      </div>
+     
     <div className="flex gap-6 ">
       {/* leftsectione */}
       <div className="flex flex-col gap-6 w-[30%] ">
@@ -186,62 +167,21 @@ const IntercityModal = ({ onMenuItemClick}) => {
           <div className="bottombottom">
             <div className="flex gap-2 items-center">
               <img src={cautionomg} alt="caution" />
-              <p className="font-redhat font-bold text-base">Incidents</p>
+              <p className="font-redhat font-bold text-base">Packages info</p>
             </div>
-            <div className="pt-4">
-              <TableContainer>
-                <Table
-                  sx={{
-                    border: "0px",
-                  }}
-                >
-                  <TableBody>
-                    {incidentData.map((incident, index) => (
-                      <TableRow
-                        key={index}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 }, // Remove border for last row
-                          borderBottom: "0px", // Remove bottom border for all rows
-                          height: "30px", // Adjust row height
-                        }}
-                      >
-                        <TableCell
-                          style={{
-                            width: "150px",
-                            paddingLeft: "0px",
-                            paddingTop: "0px",
-                            borderBottom: "0px",
-                          }}
-                        >
-                          <p className="font-redhat font-normal text-base">
-                            {incident.keyanme}
-                          </p>
-                        </TableCell>
-                        <TableCell
-                          style={{ paddingTop: "0px", borderBottom: "0px" }}
-                        >
-                          <p className="font-redhat font-normal text-base">
-                            {incident.count}
-                          </p>
-                        </TableCell>
-                        <TableCell
-                          style={{
-                            width: "100px",
-                            textAlign: "right",
-                            paddingRight: "0px",
-                            paddingTop: "0px",
-                            borderBottom: "0px",
-                          }}
-                        >
-                          <p className="font-redhat font-normal text-base text-[#18C4B8]">
-                            View
-                          </p>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+            <div className="pt-4 flex flex-col gap-2">
+              <div className="flex justify-between">
+                <p className="font-redhat font-medium text-base">Total package</p>
+                <p className="font-redhat font-normal text-sm">3 pcs</p>
+              </div>
+              <div className="flex justify-between">
+                <p className="font-redhat font-medium text-base">Total weight</p>
+                <p className="font-redhat font-normal text-sm">12 kg</p>
+              </div>
+              <div className="flex justify-between">
+                <p className="font-redhat font-medium text-base">Issues</p>
+                <p className="font-redhat font-normal text-sm">none</p>
+              </div>
             </div>
           </div>
         </div>
@@ -249,6 +189,97 @@ const IntercityModal = ({ onMenuItemClick}) => {
 
       {/* rightsection */}
       <div className="flex flex-col gap-6 flex-grow">
+      <div className="upperright">
+          <TableContainer>
+            <Table >
+              <TableHead>
+                <TableRow sx={{borderBottom:2 , borderBottomColor:"#EEEEEE"}}>
+                  <TableCell
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: "700",
+                      
+                    }}
+                  >
+                    Sender
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: "700",
+                    }}
+                  >
+                    PIN
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Phone number
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Total charge
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {[{
+      name: "Abram Lubin",
+      email: "mandelynherwitz221@gmail.com",
+      pin: "297",
+      phone: "+351-900817726",
+      charge: "08.22",
+      avatar: null, // No avatar available for this user
+    }].map((customer, index) => (
+                  <TableRow key={index} className="hover:bg-gray-50">
+                    <TableCell className="space-x-4">
+                      <div className="flex items-center">
+                        <Avatar
+                          alt={customer.name}
+                          src={customer.avatar || ""}
+                          className="mr-4"
+                        />
+                        <div>
+                          <p className="font-redhat font-semibold text-base">
+                            {customer.name}
+                            </p>
+                            <p className="font-redhat font-normal text-xs text-[#777777]">
+                            {customer.email}
+                            </p>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                    <p className="font-redhat font-medium text-base">
+                            {customer.pin}
+                            </p>
+                    </TableCell>
+                    <TableCell>
+                    <p className="font-redhat font-medium text-base">
+                            {customer.phone}
+                            </p>
+                    </TableCell>
+                    <TableCell className="flex items-center">
+                      <div className="flex gap-2 items-center">
+                        <img src={euroicon} alt="euro" />
+                        <p className="font-redhat font-medium text-base">{customer.charge}</p>
+                        </div>
+                        
+                      
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
         <div className="upperright">
           <TableContainer>
             <Table >
@@ -261,7 +292,7 @@ const IntercityModal = ({ onMenuItemClick}) => {
                       
                     }}
                   >
-                    Customer list
+                    Receiver
                   </TableCell>
                   <TableCell
                     sx={{
@@ -347,43 +378,62 @@ const IntercityModal = ({ onMenuItemClick}) => {
 
           <div className="flex justify-between pt-6  ">
             <div className="leftone gap-2">
-              <p className="font-normal text-base">Ride ID: <span className="text-[#18C4B8]">22172112AM</span></p>
+            <div className="flex gap-4 pt-2">
+        <p className="text-base font-bold font-redhat">Porto</p>
+        <img src={travelicon} alt="travel" />
+        <p className="text-base font-bold font-redhat">Lisbon</p>
+      </div>
+              <p className="font-normal text-base pt-2">Ride ID: <span className="text-[#18C4B8]">22172112AM</span></p>
             </div>
             <div className="flex gap-2 items-center">
               <img src={CalendarTodayIcon} alt="admin office" />
               <p className="font-redhat font-normal text-base">13-08-2024</p>
             </div>
           </div>
-          <div className="my-10 flex justify-between ">
-            <div className="flex ">
-              <img src={driverphone} alt="phone" />
-              <div className="flex flex-col gp-2 justify-center ">
-                <p className="font-redhat font-bold text-base">Drivers phone</p>
-                <p className="font-redhat font-medium text-base">+351-900817726</p>
-              </div>
-            </div>
-            <div className="flex ">
-              <img src={totaldistance} alt="phone" />
-              <div className="flex flex-col gp-2 justify-center ">
-                <p className="font-redhat font-bold text-base">Total Distance</p>
-                <p className="font-redhat font-semibold text-base">82 <span className="text-[#777777] font-medium">Kms</span></p>
-              </div>
-            </div>
-            <div className="flex ">
-              <img src={totalduration} alt="phone" />
-              <div className="flex flex-col gp-2 justify-center ">
-                <p className="font-redhat font-bold text-base">Total Duration</p>
-                <p className="font-redhat font-semibold text-base">12 <span className="text-[#777777] font-medium">Hrs</span></p>
-              </div>
-            </div>
-          </div>
-
-          <p className="font-redhat font-normal text-base text-[#777777]">Note: This ride was scheduled through Drivers End. The ride was started by <span className="font-semibold text-black">05:24 AM</span></p>
         </div>
       </div>
+    </div>
+
+
+
+    <div className="p-4">
+    <div className="flex gap-2 items-center">
+              
+              <p className="font-redhat font-bold text-base">Added image</p>
+            </div>
+            <div className="flex justify-between">
+            <div className="w-1/5">
+            <p className="pt-4 font-redhat font-normal text-base ">
+            Package 1
+            </p>
+            <img src={packageicon} alt="pakcgae" className="pt-4 w-full" />
+            <img src={packageicon} alt="pakcgae" className="pt-4 w-full" />
+            </div>
+            <div className="w-1/5">
+            <p className="pt-4 font-redhat font-normal text-base ">
+            Package 2
+            </p>
+            <img src={packageicon} alt="pakcgae" className="pt-4 w-full" />
+            <img src={packageicon} alt="pakcgae" className="pt-4 w-full" />
+            </div>
+            <div className="w-1/5">
+            <p className="pt-4 font-redhat font-normal text-base ">
+            Package 3
+            </p>
+            <img src={packageicon} alt="pakcgae" className="pt-4 w-full" />
+            <img src={packageicon} alt="pakcgae" className="pt-4 w-full" />
+            </div>
+            <div className="w-1/5">
+            <p className="pt-4 font-redhat font-normal text-base ">
+            Package 4
+            </p>
+            <img src={packageicon} alt="pakcgae" className="pt-4 w-full" />
+            <img src={packageicon} alt="pakcgae" className="pt-4 w-full" />
+            </div>
+            </div>
     </div>
     </div>
   );
 };
 
-export default IntercityModal;
+export default Organisationpackagesinfo;

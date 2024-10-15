@@ -21,14 +21,37 @@ import Organisations from "../components/dashboard/Organisations";
 import Organisationinfo from "../components/dashboard/Organisationinfo";
 import IntercityModal from "../components/dashboard/Rideintercitymodal";
 import Neworganisationinfo from "../components/dashboard/Neworganisationinfo";
+import VehicleInfo from "../components/dashboard/Vehicleinfo";
+import DriverInfo from "../components/dashboard/Driverinfo";
+import Customer from "../components/dashboard/Customer";
+import Customerinfo from "../components/dashboard/Customerinfo";
+import Packages from "../components/dashboard/Packages";
+import Organisationpackages from "../components/dashboard/Organisationpackages";
+import Organisationpackagesinfo from "../components/dashboard/organisationpackagesinfo";
+import Cabs from "../components/dashboard/Cabs";
+import Cabsorganisation from "../components/dashboard/Cabsorganisation";
+import Rentals from "../components/dashboard/Rentals";
+import Rentalorganisation from "../components/dashboard/Rentalorganisation";
 
 const Home = () => {
   const [activeComponent, setActiveComponent] = useState("Dashboard");
+  const [selectedVehicleId, setSelectedVehicleId] = useState(null);
+  const [selectedDriverId, setSelectedDriverId] = useState(null);
   const [notification, setnotification] = useState(null);
   const [showsidebar, setshowsidebar] = useState(false);
 
   const handleMenuItemClick = (itemName) => {
     setActiveComponent(itemName);
+  };
+
+  const handleDriverClick = (driverId) => {
+    setSelectedDriverId(driverId);
+    setActiveComponent("Driverinfo");
+  };
+
+  const handleVehicleClick = (vehicleId) => {
+    setSelectedVehicleId(vehicleId);
+    setActiveComponent("Vehicleinfo");
   };
 
   const renderActiveComponent = () => {
@@ -43,28 +66,60 @@ const Home = () => {
       case "Fleets":
         return <Fleets />;
       case "Organisations":
-        return <Organisations   onMenuItemClick={handleMenuItemClick}
-        />;
+        return <Organisations onMenuItemClick={handleMenuItemClick} />;
       case "Organisationinfo":
-        return <Organisationinfo  onMenuItemClick={handleMenuItemClick}
-        />;
-        case "Neworganisationinfo":
-          return <Neworganisationinfo onMenuItemClick={handleMenuItemClick}/>
-        case "Intercityinfo":
-        return <IntercityModal onMenuItemClick={handleMenuItemClick}/>
+        return <Organisationinfo onMenuItemClick={handleMenuItemClick} />;
+      case "Neworganisationinfo":
+        return <Neworganisationinfo onMenuItemClick={handleMenuItemClick} />;
+      case "Intercityinfo":
+        return <IntercityModal onMenuItemClick={handleMenuItemClick} />;
       case "Vehicles":
-        return <Vehicles />;
+        return <Vehicles onVehicleClick={handleVehicleClick} />;
+      case "Customer":
+        return <Customer onMenuItemClick={handleMenuItemClick} />;
+      case "Customerinfo":
+        return <Customerinfo onMenuItemClick={handleMenuItemClick} />;
+      case "Vehicleinfo":
+        return (
+          <VehicleInfo
+            selectedVehicleId={selectedVehicleId}
+            setActiveComponent={setActiveComponent}
+          />
+        );
       case "Drivers":
-        return <Drivers />;
+        return <Drivers onDriverClick={handleDriverClick} />;
+      case "Packages":
+        return <Packages onMenuItemClick={handleMenuItemClick} />;
+      case "Organisationpackages":
+        return <Organisationpackages onMenuItemClick={handleMenuItemClick} />;
+      case "Organisationpackagesinfo":
+        return (
+          <Organisationpackagesinfo onMenuItemClick={handleMenuItemClick} />
+        );
+      case "Driverinfo":
+        return (
+          <DriverInfo
+            selectedDriverId={selectedDriverId}
+            setActiveComponent={setActiveComponent}
+            setSelectedDriver={setSelectedDriverId}
+          />
+        );
       case "Rides":
         return <Rides />;
       case "Live Map":
         return <LiveMap />;
+      case "Cabs":
+        return <Cabs onMenuItemClick={handleMenuItemClick} />;
+      case "Cabsorganisation":
+        return <Cabsorganisation />;
       case "Zones":
         return <Zones />;
       case "Intercity":
-        return <Intercity onMenuItemClick={handleMenuItemClick}/>;
-
+        return <Intercity onMenuItemClick={handleMenuItemClick} />;
+      case "Rentals":
+        return <Rentals onMenuItemClick={handleMenuItemClick} />;
+      case "Rentalorganisation":
+        return <Rentalorganisation />;
       case "Reports":
         return <Reports />;
       case "Documents":

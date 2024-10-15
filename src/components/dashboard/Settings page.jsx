@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { countries } from "./../../utils/countries";
 
-const Settings = () => {
+const SettingsPage = () => {
   const [selectedTab, setSelectedTab] = useState("General");
   const [userData, setUserData] = useState({
     brandName: "BOLD",
@@ -156,11 +156,10 @@ const Settings = () => {
                   onChange={handleInputChange}
                   placeholder="Enter brand name"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 />
               </div>
               <div>
-                <label className="block text-gray-600 font-redhat text-base font-medium" >
+                <label className="block text-gray-600 font-redhat text-base font-medium">
                   Trade name
                 </label>
                 <TextField
@@ -169,7 +168,6 @@ const Settings = () => {
                   onChange={handleInputChange}
                   placeholder="Enter trade name"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 />
               </div>
               <div>
@@ -182,7 +180,6 @@ const Settings = () => {
                   onChange={handleInputChange}
                   placeholder="Enter contact number"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 />
               </div>
               <div>
@@ -195,7 +192,6 @@ const Settings = () => {
                   onChange={handleInputChange}
                   placeholder="Enter fax number"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 />
               </div>
               <div>
@@ -208,7 +204,6 @@ const Settings = () => {
                   onChange={handleInputChange}
                   placeholder="Enter email address"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 />
               </div>
             </div>
@@ -229,7 +224,6 @@ const Settings = () => {
                   onChange={handleInputChange}
                   placeholder="Select country"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 >
                   {countries.map((country) => (
                     <MenuItem key={country.code} value={country.label}>
@@ -248,21 +242,18 @@ const Settings = () => {
                   onChange={handleInputChange}
                   placeholder="Enter city"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 />
               </div>
               <div>
-                <label className="block text-gray-600 font-redhat text-base font-medium mb-2">
+                <label className="block text-gray-600 font-redhat text-base font-medium">
                   Flat/Unit
                 </label>
                 <TextField
                   name="flatUnit"
                   value={userData.flatUnit}
                   onChange={handleInputChange}
-                  className="mt-2"
                   placeholder="Enter flat/unit"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 />
               </div>
               <div>
@@ -275,7 +266,6 @@ const Settings = () => {
                   onChange={handleInputChange}
                   placeholder="Enter street"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 />
               </div>
               <div>
@@ -288,7 +278,6 @@ const Settings = () => {
                   onChange={handleInputChange}
                   placeholder="Enter number"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 />
               </div>
               <div>
@@ -301,7 +290,6 @@ const Settings = () => {
                   onChange={handleInputChange}
                   placeholder="Enter postcode"
                   fullWidth
-                  sx={{marginTop:"8px"}}
                 />
               </div>
             </div>
@@ -348,7 +336,7 @@ const Settings = () => {
               fullWidth
             />
 
-            <label className="text-gray-600" >Time Zone</label>
+            <label className="text-gray-600">Time Zone</label>
             <TextField
               name="timeZone"
               value={preferencesData.timeZone}
@@ -451,7 +439,7 @@ const Settings = () => {
                   value={accountData.bankAccountNumber}
                   placeholder="12099 1119201 9921012 01221"
                   size="md"
-                  sx={{marginTop:"8px"}}
+                  mt={1}
                 />
               </Box>
             </Grid>
@@ -463,7 +451,7 @@ const Settings = () => {
                   value={accountData.bankName}
                   placeholder="ICICI Bank Ltd"
                   size="md"
-                  sx={{marginTop:"8px"}}
+                  mt={1}
                 />
               </Box>
             </Grid>
@@ -475,7 +463,7 @@ const Settings = () => {
                   value={accountData.accountType}
                   placeholder="Current account"
                   size="md"
-                  sx={{marginTop:"8px"}}
+                  mt={1}
                 />
               </Box>
             </Grid>
@@ -489,7 +477,7 @@ const Settings = () => {
                   value={accountData.currentPaymentGateway}
                   placeholder="Stripe payments"
                   size="md"
-                  sx={{marginTop:"8px"}}
+                  mt={1}
                 />
               </Box>
             </Grid>
@@ -501,7 +489,7 @@ const Settings = () => {
                   value={accountData.taxId}
                   placeholder="Lorem ipsum"
                   size="md"
-                  sx={{marginTop:"8px"}}
+                  mt={1}
                 />
               </Box>
             </Grid>
@@ -513,7 +501,7 @@ const Settings = () => {
                   value={accountData.taxAccountNumber}
                   placeholder="BOLPP00219NM"
                   size="md"
-                  sx={{marginTop:"8px"}}
+                  mt={1}
                 />
               </Box>
             </Grid>
@@ -610,4 +598,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default SettingsPage;
